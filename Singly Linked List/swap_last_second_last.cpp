@@ -41,18 +41,16 @@ void disp()
     }
 }
 
-void delete_after_given_data(int x)
-{
-    temp = first;
-    while (temp->data != x)
-    {
-        temp = temp->next;
+void swap_last_secondlast(){
+    temp=first;
+    while(temp->next->next->next!=null){
+        temp=temp->next;
     }
     ttemp=temp->next;
     p=ttemp->next;
     temp->next=p;
+    p->next=ttemp;
     ttemp->next=null;
-    delete ttemp;
 }
 
 int main()
@@ -62,16 +60,9 @@ int main()
     createfirst(10);
     addnode(20);
     addnode(30);
+    addnode(40);
     addnode(50);
-    addnode(60);
-
-    cout << "Before deleting after given data :" << endl;
-    disp();
-    cout<<"Enter data to delete after :";
-    cin>>a;
-    cout<<"After deleting after given data :"<<endl;
-    
-    delete_after_given_data(a);
+    swap_last_secondlast();
     disp();
 
     return 0;

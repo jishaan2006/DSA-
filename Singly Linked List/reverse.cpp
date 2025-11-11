@@ -7,11 +7,11 @@ struct node
     int data;
     node *next;
 };
-node *first, *temp, *ttemp, *p;
+node *first, *temp, *ttemp, *p,*curr,*nxt;
 
 void init()
 {
-    first = temp = ttemp = null;
+    first = temp = ttemp =nxt= null;
 }
 void addnode(int val)
 {
@@ -41,21 +41,18 @@ void disp()
     }
 }
 
-void delete_before_given_data(int x)
-{
-    temp=first;
-    while (temp->next->next->data!=x)
-    {
-        temp=temp->next;
+void reverse(){
+    p=null;
+    curr=first;
+    while(curr!=null){
+        nxt=curr->next;
+        curr->next=p;
+        p=curr;
+        curr=nxt;
     }
-    ttemp=temp->next;
-    p=ttemp->next;
-    temp->next=p;
-    ttemp->next=null;
-    delete ttemp;
+    first=p;
 
 }
-
 
 int main()
 {
@@ -64,16 +61,11 @@ int main()
     createfirst(10);
     addnode(20);
     addnode(30);
+    addnode(40);
     addnode(50);
-    addnode(60);
-
-    cout << "Before deleting before given data :" << endl;
     disp();
-    cout<<"Enter data to delete before :";
-    cin>>a;
-    cout<<"After deleting before given data :"<<endl;
-    
-    delete_before_given_data(a);
+    cout<<"After reversing"<<endl;
+    reverse();
     disp();
 
     return 0;
